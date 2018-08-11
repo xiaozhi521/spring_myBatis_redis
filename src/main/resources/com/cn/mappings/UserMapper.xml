@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.mappings.UserMapper">
+    <select id="getUserById" parameterType="int" resultMap="getUserByIdResultMap">
+        SELECT * FROM USER  WHERE id = #{id}
+    </select>
+    <resultMap id="getUserByIdResultMap" type="user">
+        <id property="id" column="id"/>
+        <result property="userName" column="userName"/>
+        <result property="birthday" column="birthday"/>
+        <result property="sex" column="sex"/>
+        <result property="address" column="address"/>
+    </resultMap>
+
+</mapper>
