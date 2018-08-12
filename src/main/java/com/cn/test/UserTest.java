@@ -2,6 +2,7 @@ package com.cn.test;
 
 import com.cn.bean.User;
 import com.cn.mappings.UserMapper;
+import com.cn.serviceImpl.UserServiceImpl;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -9,6 +10,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class UserTest {
 
+    @Test
+    public void userService(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-MapperFactoryBean.xml");
+        UserServiceImpl userService = new UserServiceImpl();
+        User user =  userService.getUserById(1);
+        System.out.println(user.toString());
+
+    }
     //通过`MapperFactoryBean`创建代理对象
     @Test
     public void mapperFactoryBean(){
