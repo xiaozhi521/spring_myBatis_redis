@@ -5,25 +5,42 @@
 <web-app>
 
   <display-name>Archetype Created Web Application</display-name>
-    <!--SpringMvc参数传递中乱码问题-->
-
     <!--<context-param>-->
         <!--<param-name>spring.profiles.default</param-name>-->
         <!--<param-value>test</param-value>-->
     <!--</context-param>-->
+
+    <!-- 配置spring ioc容器 -->
     <context-param>
-        <param-name>javax.faces.CONFIG_FILES</param-name>
-        <param-value>classpath:applicationContext.xml</param-value>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring/applicationContext-MapperFactoryBean.xml</param-value>
     </context-param>
-    <!--<servlet>-->
-        <!--<servlet-name>Faces Servlet</servlet-name>-->
-        <!--<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>-->
-        <!--<load-on-startup>1</load-on-startup>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>Faces Servlet</servlet-name>-->
-        <!--<url-pattern>*.xhtml</url-pattern>-->
-    <!--</servlet-mapping>-->
+    <!-- Bootstraps the root web application context before servlet initialization -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!-- 配置springmvc 的DispatcherServlet -->
+    <servlet>
+        <servlet-name>springMVCDispatcher</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <!--读取配置文件-->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:spring/springmvc.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <!--映射-->
+    <servlet-mapping>
+        <servlet-name>springMVCDispatcher</servlet-name>
+        <url-pattern>*.mvc</url-pattern>
+        <!--配置多个映射-->
+        <!--<url-pattern>*.do</url-pattern>-->
+    </servlet-mapping>
+
     <filter>
         <filter-name>springUtf8Encoding</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -41,29 +58,4 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <listener>
-        <listener-class>
-            org.springframework.web.context.request.RequestContextListener
-        </listener-class>
-    </listener>
-
-    <servlet>
-        <servlet-name>applicationContextMapperFactoryBean</servlet-name>
-        <servlet-class>
-            org.springframework.web.servlet.DispatcherServlet
-        </servlet-class>
-        <!--读取配置文件-->
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>classpath*:spring/applicationContext-MapperFactoryBean.xml</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <!--映射-->
-    <servlet-mapping>
-        <servlet-name>applicationContextMapperFactoryBean</servlet-name>
-        <url-pattern>*.mvc</url-pattern>
-        <!--配置多个映射-->
-        <!--<url-pattern>*.do</url-pattern>-->
-    </servlet-mapping>
 </web-app>
