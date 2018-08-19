@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd http://www.springframework.org/schema/tool http://www.springframework.org/schema/tool/spring-tool.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <!-- 配置扫描的包 -->
-    <context:component-scan base-package="com.cn.bean,com.cn.mappings"/>
+    <context:component-scan base-package="com.cn.bean,com.cn.mappings,com.cn.controller,com.cn.service,com.cn.serviceImpl"/>
 
     <!--使用注解驱动-->
     <context:annotation-config/>
