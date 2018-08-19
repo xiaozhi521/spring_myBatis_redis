@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>spring_myBatis_redis</groupId>
@@ -9,7 +9,7 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>spring_myBatis_redis Maven Webapp</name>
+  <name>springmyBatisRedis Maven Webapp</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -20,6 +20,12 @@
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -112,33 +118,33 @@
       <artifactId>spring-web</artifactId>
       <version>5.0.6.RELEASE</version>
     </dependency>
-
-
+    <!--阿里 JSON-->
     <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.12</version>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.14</version>
     </dependency>
-
-
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+    </dependency>
   </dependencies>
 
   <build>
-    <finalName>spring_myBatis_redis</finalName>
+    <finalName>springmyBatisRedis</finalName>
     <resources>
-　　　　<resource>
-　　　　　　　　<directory>src/main/java</directory>
-　　　　　　<includes>
-　　　　　　　　<include>**/*.xml</include>
-　　　　　　</includes>
-　　　　</resource>
-        <resource>
-          <directory>src/main/resources</directory>
-          <includes>
-            <include>**/*.xml</include>
-          </includes>
-        </resource>
-　　</resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*.xml</include>
+          <include>**/*.properties</include>
+          <include>**/*.yaml</include>
+          <include>**/*.json</include>
+          <include>**/*.ttc</include>
+        </includes>
+      </resource>
+    </resources>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
