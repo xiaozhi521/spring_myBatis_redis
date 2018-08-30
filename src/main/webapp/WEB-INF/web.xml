@@ -9,6 +9,23 @@
   <!--<param-value>test</param-value>-->
   <!--</context-param>-->
 
+  <listener>
+    <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
+  </listener>
+  <filter>
+    <filter-name>log4jServletFilter</filter-name>
+    <filter-class>org.apache.logging.log4j.web.Log4jServletFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>log4jServletFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+    <dispatcher>ERROR</dispatcher>
+  </filter-mapping>
+  <!-- log4j2-end -->
+
   <!-- 配置spring ioc容器 -->
   <context-param>
     <param-name>contextConfigLocation</param-name>

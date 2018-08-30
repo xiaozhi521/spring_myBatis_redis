@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:tool="http://www.springframework.org/schema/tool"
        xmlns:cache="http://www.springframework.org/schema/cache"
-       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 	http://www.springframework.org/schema/tool
@@ -11,7 +11,7 @@
 	http://www.springframework.org/schema/cache
 	http://www.springframework.org/schema/cache/spring-cache-4.0.xsd
 	http://www.springframework.org/schema/context
-	http://www.springframework.org/schema/context/spring-context.xsd">
+	http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
     <!-- 配置扫描的包 -->
     <context:component-scan base-package="com.cn.bean,com.cn.mappings,com.cn.controller,com.cn.service,com.cn.serviceImpl"/>
 
@@ -35,12 +35,18 @@
     <bean id="transcationManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
+    <!--使用注解定义事务-->
+    <tx:annotation-driven transaction-manager="transcationManager"/>
+
+    <!--采用自动扫描方式创建mapper bean-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.cn.mappings,com.cn.mapper" />
+        <property name="basePackage" value="com.cn" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
         <!-- 指定标注才扫描成为Mapper -->
         <property name="annotationClass" value="org.springframework.stereotype.Repository" />
     </bean>
+
+
 
     <!--引入 redis 配置文件-->
     <import resource="spring-redis.xml" />
