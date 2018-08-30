@@ -15,6 +15,10 @@ public class RoleController extends BaseController{
     @Autowired
     private RoleService roleService;
 
+    public RoleController() {
+        System.out.println("RoleController Constructor...");
+    }
+
     @RequestMapping("/{id}.mvc")
     @ResponseBody
     public Object getRole(@PathVariable Long id){

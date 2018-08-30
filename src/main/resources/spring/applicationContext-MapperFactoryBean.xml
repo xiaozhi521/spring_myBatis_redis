@@ -12,8 +12,12 @@
 	http://www.springframework.org/schema/cache/spring-cache-4.0.xsd
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
-    <!-- 配置扫描的包 -->
-    <context:component-scan base-package="com.cn.bean,com.cn.mappings,com.cn.controller,com.cn.service,com.cn.serviceImpl"/>
+    <!-- 配置扫描的包 与 springmvc.xml 相结合，解决创建两次bean实例问题-->
+    <!-- 配置包扫描器  限制不扫描Handle的注解@Controller和异常处理的注解@ControllerAdvice-->
+    <context:component-scan base-package="com.cn.*">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
 
     <!--使用注解驱动-->
     <context:annotation-config/>
