@@ -1,7 +1,10 @@
 package com.cn.serviceImpl;
 
 import java.util.List;
-import java.util.logging.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import com.cn.bean.Role;
 import com.cn.mappings.RoleMapper;
@@ -25,7 +28,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class RoleServiceImpl implements RoleService, ApplicationContextAware {
 
-	public Logger logger = Logger.getLogger(RoleServiceImpl.class.getName());
+//	public Logger logger = Logger.getLogger(RoleServiceImpl.class.getName());
+	Logger logger = LoggerFactory.getLogger(RoleServiceImpl.class);
 
 	@Autowired
 	private RoleMapper roleMapper = null;
