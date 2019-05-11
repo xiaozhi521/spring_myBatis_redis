@@ -1,7 +1,6 @@
 https://blog.csdn.net/zhiyuzhe/article/details/78850238
 spring5.0解决Log4jConfigListener过期问题
-2017年12月20日 10:23:19 阅读数：6164 标签： spring  更多
-个人分类： java web框架
+
 升级到spring5.0，发现之前web.xml 里配置的log监听Log4jConfigListener被spring废弃了，百度了一下，没有发现答案。
 这个是web.xml之前的配置：
 
