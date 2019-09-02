@@ -42,6 +42,38 @@
     <!--使用注解定义事务-->
     <tx:annotation-driven transaction-manager="transcationManager"/>
 
+    <!--集成 activiti-->
+    <bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+        <!-- 数据源 -->
+        <property name="dataSource" ref="dataSource" />
+        <!-- 配置事务管理器，统一事务 -->
+        <property name="transactionManager" ref="transcationManager" />
+        <!-- 设置建表策略 -->
+        <property name="databaseSchemaUpdate" value="true" />
+    </bean>
+
+    <bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+        <property name="processEngineConfiguration" ref="processEngineConfiguration" />
+    </bean>
+        <!--bean id repositoryService-->
+        <!--RepositoryServicie repositoryService = processEngine.getRepositoryService();-->
+    <bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService" />
+    <bean id="runtimeService" factory-bean="processEngine" factory-method="getRuntimeService" />
+    <bean id="taskService" factory-bean="processEngine" factory-method="getTaskService" />
+    <bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService" />
+    <bean id="managementService" factory-bean="processEngine" factory-method="getManagementService" />
+    <bean id="identityService" factory-bean="processEngine" factory-method="getIdentityService" />
+    <bean id="formService" factory-bean="processEngine" factory-method="getFormService" />
+    <!-- 流程相关的Service -->
+    <!--<bean id="workflowService" class="activitiweb.service.impl.WorkflowServiceImpl">-->
+        <!--<property name="repositoryService" ref="repositoryService"></property>-->
+        <!--<property name="runtimeService" ref="runtimeService"></property>-->
+        <!--<property name="taskService" ref="taskService"></property>-->
+        <!--<property name="formService" ref="formService"></property>-->
+        <!--<property name="historyService" ref="historyService"></property>-->
+    <!--</bean>-->
+
+
     <!--采用自动扫描方式创建mapper bean-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.cn" />
